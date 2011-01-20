@@ -65,7 +65,3 @@ for api, functions of v1_apis
           this.getter( id_path, callback )
     all
   true
-
-q = new exports.V1 process.env.QWERLY_API_KEY
-q.serviceApi().twitterUsername "philjackson", ( err, res ) ->
-  console.log res
