@@ -44,24 +44,25 @@ class exports.V1 extends Qwerly
     @path_prefix + extra + "?api_key=" + @api_key
 
 v1_apis =
-  serviceApi:
-    twitterUsername: "/twitter/%{s}.json"
-    qwerlyUsername:  "/users/%{s}.json"
-    facebookId:     "/facebook/%{s}.json"
   userApi:
-    twitterUsername: "/twitter/%{s}/services.json"
-    qwerlyUsername:  "/users/%{s}/services.json"
-    facebookId:     "/facebook/%{s}/services.json"
+    viaTwitter:  "/twitter/%{s}.json"
+    viaQwerly:   "/users/%{s}.json"
+    viaFacebook: "/facebook/%{s}.json"
+  serviceApi:
+    viaTwitter:  "/twitter/%{s}/services.json"
+    viaQwerly:   "/users/%{s}/services.json"
+    viaFacebook: "/facebook/%{s}/services.json"
 
 # generate the api
 for api, functions of v1_apis
-  exports.V1.prototype[ api ] = () ->
-    all = { }
-    for name, path of functions
-      do ( path ) =>
-        all[ name ] = ( id, callback ) =>
-          # is this going to be quick enough?
-          id_path = path.replace /%\{s\}/g, id
-          this.getter( id_path, callback )
-    all
-  true
+  do ( functions ) ->
+    exports.V1.prototype[ api ] = () ->
+      all = { }
+      for name, path of functions
+        do ( path ) =>
+          all[ name ] = ( id, callback ) =>
+            # is this going to be quick enough?
+            id_path = path.replace /%\{s\}/g, id
+            this.getter( id_path, callback )
+      all
+    true

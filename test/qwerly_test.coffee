@@ -11,39 +11,57 @@ done = ( t, count ) ->
     else
       t.done()
 
-expected =
-  flickr:
-    url: "http://www.flickr.com/photos/phil-jackson/"
-    username: "phil-jackson"
-  foursquare:
-    url: "http://foursquare.com/user/philjackson"
-    username: "philjackson"
-  friendfeed:
-    url: "http://friendfeed.com/philjackson1"
-    username: "philjackson1"
-  github:
-    url: "http://github.com/philjackson"
-    username: "philjackson"
-  plancast:
-    url: "http://plancast.com/philjackson"
-    username: "philjackson"
-  twitter:
-    url: "http://twitter.com/philjackson"
-    username: "philjackson"
-  klout:
-    url: "http://klout.com/philjackson"
-    username: "philjackson"
-
-exports[ "service API" ] = ( t ) ->
-  # make sure QWERLY_API_KEY is set
+exports.basic = ( t ) ->
   t.ok process.env.QWERLY_API_KEY
-
   t.ok q = new Qwerly process.env.QWERLY_API_KEY
 
   t.ok q.serviceApi instanceof Function
   t.ok q.userApi instanceof Function
 
-  q.serviceApi().twitterUsername "philjackson", ( err, res ) ->
+  done( t, 4 )
+
+# TODO: actually something
+exports[ "user API" ] = ( t ) ->
+  t.ok process.env.QWERLY_API_KEY
+  t.ok q = new Qwerly process.env.QWERLY_API_KEY
+
+  expected =
+    description: 'iPlayer developer @ BBC. Lead developer of Emacs Magit.'
+    name: 'Phil Jackson'
+    twitter_username: 'philjackson'
+    website: 'http://www.shellarchive.co.uk'
+    qwerly_username: 'philjackson'
+
+  done( t, 2 )
+
+exports[ "service API" ] = ( t ) ->
+  t.ok process.env.QWERLY_API_KEY
+  t.ok q = new Qwerly process.env.QWERLY_API_KEY
+
+  expected =
+    flickr:
+      url: "http://www.flickr.com/photos/phil-jackson/"
+      username: "phil-jackson"
+    foursquare:
+      url: "http://foursquare.com/user/philjackson"
+      username: "philjackson"
+    friendfeed:
+      url: "http://friendfeed.com/philjackson1"
+      username: "philjackson1"
+    github:
+      url: "http://github.com/philjackson"
+      username: "philjackson"
+    plancast:
+      url: "http://plancast.com/philjackson"
+      username: "philjackson"
+    twitter:
+      url: "http://twitter.com/philjackson"
+      username: "philjackson"
+    klout:
+      url: "http://klout.com/philjackson"
+      username: "philjackson"
+
+  q.serviceApi().viaTwitter "philjackson", ( err, res ) ->
     t.equal null, err
     t.equal 200, res.status
 
