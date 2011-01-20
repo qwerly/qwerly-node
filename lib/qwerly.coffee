@@ -45,13 +45,13 @@ class exports.V1 extends Qwerly
 
 v1_apis =
   serviceApi:
-    fromTwitterUsername: "/twitter/%{s}.json"
-    fromQwerlyUsername:  "/users/%{s}.json"
-    fromFacebookId:     "/facebook/%{s}.json"
+    twitterUsername: "/twitter/%{s}.json"
+    qwerlyUsername:  "/users/%{s}.json"
+    facebookId:     "/facebook/%{s}.json"
   userApi:
-    fromTwitterUsername: "/twitter/%{s}/services.json"
-    fromQwerlyUsername:  "/users/%{s}/services.json"
-    fromFacebookId:     "/facebook/%{s}/services.json"
+    twitterUsername: "/twitter/%{s}/services.json"
+    qwerlyUsername:  "/users/%{s}/services.json"
+    facebookId:     "/facebook/%{s}/services.json"
 
 # generate the api
 for api, functions of v1_apis
@@ -67,4 +67,5 @@ for api, functions of v1_apis
   true
 
 q = new exports.V1 process.env.QWERLY_API_KEY
-q.serviceApi().fromTwitterUsername "philjackson", console.log
+q.serviceApi().twitterUsername "philjackson", ( err, res ) ->
+  console.log res
