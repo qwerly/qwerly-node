@@ -44,11 +44,11 @@ class exports.V1 extends Qwerly
     @path_prefix + extra + "?api_key=" + @api_key
 
 v1_apis =
-  userApi:
+  users:
     viaTwitter:  "/twitter/%{s}.json"
     viaQwerly:   "/users/%{s}.json"
     viaFacebook: "/facebook/%{s}.json"
-  serviceApi:
+  services:
     viaTwitter:  "/twitter/%{s}/services.json"
     viaQwerly:   "/users/%{s}/services.json"
     viaFacebook: "/facebook/%{s}/services.json"

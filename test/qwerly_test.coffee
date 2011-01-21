@@ -15,8 +15,8 @@ exports.basic = ( t ) ->
   t.ok process.env.QWERLY_API_KEY
   t.ok q = new Qwerly process.env.QWERLY_API_KEY
 
-  t.ok q.serviceApi instanceof Function
-  t.ok q.userApi instanceof Function
+  t.ok q.services instanceof Function
+  t.ok q.users instanceof Function
 
   done( t, 4 )
 
@@ -61,7 +61,7 @@ exports[ "service API" ] = ( t ) ->
       url: "http://klout.com/philjackson"
       username: "philjackson"
 
-  q.serviceApi().viaTwitter "philjackson", ( err, res ) ->
+  q.services().viaTwitter "philjackson", ( err, res ) ->
     t.equal null, err
     t.equal 200, res.status
 
@@ -69,4 +69,4 @@ exports[ "service API" ] = ( t ) ->
       t.equal expected[ service.type ].url, service.url
       t.equal expected[ service.type ].username, service.username
 
-    done( t, 20 )
+    done( t, 18 )
