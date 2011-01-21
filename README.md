@@ -13,6 +13,16 @@ node-qwerly is an asynchronous node.js API for the
 
 # APIs
 
+Where $callback takes two functions. The first for an error and the
+second for the resulting data structure which Qwerly gives us.
+
+If there's an error then $err will contain an object which looks like
+this:
+
+    status: HTTP status code
+    reason: x-mashery-error-code header value
+    body:   body (as a string)
+
 ## Service lookups
 
         qwerly.services().viaTwitter( $id, $callback )
