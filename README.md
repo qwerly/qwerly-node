@@ -1,7 +1,7 @@
 # Node Qwerly
 
 node-qwerly is an asynchronous node.js API for the
-[Qwerly][qwerly.com] service. It's written in Coffeescript but the JS
+[Qwerly](qwerly.com) service. It's written in Coffeescript but the JS
 is included so no need for the Coffeescript compiler to use it.
 
 # Synopsis
