@@ -11,8 +11,7 @@ class Qwerly
       "User-Agent":     "qwerly-node HTTP client",
       "Content-Length": "0"
 
-    get_str = "http://#{@domain}" + this.path( path )
-    req = client.request "GET", get_str, headers;
+    req = client.request "GET", this.path( path ), headers;
 
     req.on "response", ( response ) ->
       response.setEncoding( "utf8" )
